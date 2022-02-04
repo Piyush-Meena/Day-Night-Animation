@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  paddig: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.container {
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle {
+  padding: 10px;
+}
+
+.toggle--day,
+.toggle--night {
+  margin: 10px;
+  display: none;
+}
+
+.icon--sun,
+.icon--moon {
+  font-size: 32px;
+  padding: 15px;
+}
+
+.toggle--day:checked + .icon--sun {
+  color: #F2F230;
+}
+
+.toggle--night:checked + .icon--moon {
+  color: #818283;
+}
+
+.toggle--day:checked ~ .box {
+  animation: sunrise-sky 2s ease-in forwards;
+}
+.toggle--day:checked ~ .box .sun {
+  animation: sunrise 2s linear forwards;
+}
+.toggle--day:checked ~ .box .moon {
+  animation: moonset 2s linear forwards;
+}
+.toggle--day:checked ~ .box .moon .moon-shadow {
+  animation: sunrise-sky 2s ease-in forwards;
+}
+.toggle--day:checked ~ .box .grass {
+  animation: sunrise-grass 2s linear forwards;
+}
+
+.toggle--night:checked ~ .box {
+  animation: sunset-sky 2s ease-out forwards;
+}
+.toggle--night:checked ~ .box .sun {
+  animation: sunset 2s linear forwards;
+}
+.toggle--night:checked ~ .box .moon {
+  animation: moonrise 2s linear forwards;
+}
+.toggle--night:checked ~ .box .moon .moon-shadow {
+  animation: sunset-sky 2s ease-out forwards;
+}
+.toggle--night:checked ~ .box .grass {
+  animation: sunset-grass 2s linear forwards;
+}
+
+.box {
+  height: 500px;
+  width: 600px;
+  margin: 10px;
+  background-color: #87ceeb;
+  border-radius: 25px;
+}
+
+.sun {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #dce012;
+  box-shadow: 0 0 5px #dce012, 0 0 10px #dce012, 0 0 15px #dce012, 0 0 20px #dce012;
+  transform: translate(275px, 10px);  
+}
+
+.moon {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: -5px 0 5px #FFF, -5px 0 10px #FFF, -5px 0 15px #FFF;
+  transform: translate(225px, 540px);
+}
+
+.moon-shadow {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: black;
+  transform: translate(22%, -4px);
+}
+
+.grass {
+  height: 300px;
+  width: 100%;
+  margin-top: 100px;
+  background-color: #2e8b57;
+  border-radius: 0 0 25px 25px;
+  clip-path: polygon(0% 0%, 8% 8%, 19% 0%, 25% 9%, 37% 0%, 43% 10%, 57% 0%, 64% 11%, 77% 0%, 83% 11%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+}
+
+.links a {
+  color: #000;
+  font-size: 22px;
+  margin: 20px;
+  text-decoration: none;
+}
+
+@keyframes sunset {
+  0%    {transform: translate(275px, 10px); background-color: #dce012;}
+  25%   {transform: translate(341.25px, 63.75px); background-color: #E6D517;}
+  50%   {transform: translate(407.5px, 117.5px); background-color: #E7C016;}
+  75%   {transform: translate(473.75px, 171.25px); background-color: #E8AA14;}
+  100%  {transform: translate(540px, 225px); background-color: #FF5714;}
+}
+
+@keyframes moonrise {
+  0%    {transform: translate(0, 200px);}
+  25%   {transform: translate(68.75px, 145px);}
+  50%   {transform: translate(137.5px, 90px);}
+  75%   {transform: translate(206px, 35px);}
+  100%  {transform: translate(275px, -20px);}
+}
+
+@keyframes moonset {
+  0%    {transform: translate(275px, -20px);}
+  25%   {transform: translate(341.25px, 41.25px);}
+  50%   {transform: translate(407.5px, 102.5px);}
+  75%   {transform: translate(473.75px, 163.75px);}
+  100%  {transform: translate(530px, 225px);}
+}
+
+@keyframes sunrise {
+  0%    {transform: translate(0, 200px); background-color: #FF5714;}
+  25%   {transform: translate(68.75px, 152.5px); background-color: #E8AA14;}
+  50%   {transform: translate(137.5px, 105px); background-color: #E7C016;}
+  75%   {transform: translate(206px, 57.5px); background-color: #E6D517;}
+  100%  {transform: translate(275px, 10px); background-color: #dce012;}
+}
+
+@keyframes sunrise-sky {
+  0%  {background-color: #000;}
+  25%   {background-color: #FF5714;}
+  50%   {background-color: #E8AA14;}
+  75%   {background-color: #1BE7FF;}
+  100%    {background-color: #87ceeb;}
+}
+
+@keyframes sunset-sky {
+  0%    {background-color: #87ceeb;}
+  25%   {background-color: #1BE7FF;}
+  50%   {background-color: #E8AA14;}
+  75%   {background-color: #FF5714;}
+  100%  {background-color: #000;}
+}
+
+@keyframes sunrise-grass {
+  0%    {background-color: #00693e;}
+  100%  {background-color: #2e8b57;}
+}
+
+@keyframes sunset-grass {
+  0%    {background-color: #2e8b57;}
+  100%  {background-color: #00693e;}
+}
+
+@media only screen and (max-width: 610px) {
+  .box {
+    height: 400px;
+    width: 300px;
+  }
+  .sun {
+    height: 30px;
+    width: 30px;
+    transform: translate(135px, 10px);
+  }
+  .moon {
+    height: 30px;
+    width: 30px;
+    transform: translate(260px, 200px);
+  }
+  .moon-shadow {
+    height: 30px;
+    width: 30px;
+  }
+  .grass {
+    height: 240px;
+    width: 300px;
+  }
+
+  @keyframes sunset {
+    0%    {transform: translate(135px, 10px);}
+    25%   {transform: translate(166.25px, 57.5px);}
+    50%   {transform: translate(197.5px, 105px);}
+    75%   {transform: translate(228.75px, 152.5px);}
+    100%  {transform: translate(260px, 200px);}
+  }
+  @keyframes moonrise {
+    0%    {transform: translate(0, 200px);}
+    25%   {transform: translate(33.75px, 145px);}
+    50%   {transform: translate(67.5px, 90px);}
+    75%   {transform: translate(101.25px, 35px);}
+    100%  {transform: translate(135px, -20px);}
+  }
+  @keyframes moonset {
+    0%    {transform: translate(135px, -20px);}
+    25%   {transform: translate(166.25px, 41.25px);}
+    50%   {transform: translate(197.5px, 102.5px);}
+    75%   {transform: translate(228.75px, 163.75px);}
+    100%  {transform: translate(260px, 200px);}
+  }
+  @keyframes sunrise {
+    0%    {transform: translate(0, 200px);}
+    25%   {transform: translate(33.75px, 152.5px);}
+    50%   {transform: translate(67.5px, 105px);}
+    75%   {transform: translate(101.25px, 57.5px);}
+    100%  {transform: translate(135px, 10px);}
+  }
+}
